@@ -25,6 +25,18 @@ namespace QuestionsWebApp.Controllers
             return View(await _context.Questions.ToListAsync());
         }
 
+        // GET: ShowSearchForm
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
+
+        // POST: ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+        {
+            return View("Index", await _context.Questions.Where( q => q.Question.Contains(SearchPhrase)).ToListAsync());
+        }
+
         // GET: Questions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
